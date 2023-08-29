@@ -1,0 +1,24 @@
+<template>
+    
+    <c-create-doctor></c-create-doctor>
+    <lightning-card
+        title=" list Of Doctors"
+        icon-name="custom:custom62"
+   >
+        <div class="slds-var-m-around_medium">
+            <template lwc:if={doctors.data}>
+                <c-custom-data-types
+                    key-field="Id"
+                    data={doctors.data}
+                    columns={columns}
+                    hide-checkbox-column="true"
+                >
+                </c-custom-data-types>
+            </template>
+            <template lwc:elseif={doctors.error}>
+                <p>>error occurred while loading</p>
+            </template>
+        </div>
+       
+    </lightning-card>
+</template>

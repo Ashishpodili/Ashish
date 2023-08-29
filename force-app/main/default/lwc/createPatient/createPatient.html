@@ -1,0 +1,84 @@
+<template>
+    
+        <lightning-card>
+        <template lwc:if={patientcreatebutton}>
+            <div class="slds-text-align_right slds-p-around_medium">
+        <lightning-button label="Create Patient" variant="neutral" onclick={handleopenformToCreatePatient}></lightning-button>
+          </div>
+         </template>
+       
+    <template lwc:if={createpatientform}>
+                
+        <section
+        role="dialog"
+        tabindex="-1"
+        aria-labelledby="modal-heading-01"
+        aria-modal="true"
+        aria-describedby="modal-content-id-1"
+        class="slds-modal slds-fade-in-open"
+      >
+        <div class="slds-modal__container">
+          <!-- Header Start -->
+          <header class="slds-modal__header">
+            <lightning-button-icon
+              class="slds-modal__close"
+              title="Close"
+              icon-name="utility:close"
+              icon-class="slds-button_icon-inverse"
+              onclick={handlebackToCreatePatient}
+            ></lightning-button-icon>
+    
+            <h2 class="slds-text-heading_medium slds-hyphenate header-string">
+             Create Patient
+            </h2>
+          </header>
+          <!-- Header End -->
+          <div
+            class="slds-modal__content slds-p-around_medium"
+            id="modal-content-id-1"
+          >
+            <slot> 
+                <div class="slds-p-around_medium">
+                <div class="slds-grid slds-gutters">
+                    <div class="slds-col">
+                      <span>
+                        <lightning-input  type="text" label="PatientName" value={name} onchange={handleNameChange}></lightning-input>
+                        <lightning-input  label="Weight(kgs)"  type="number" value={weight} onchange={handleWeightChange}></lightning-input>
+                        <lightning-input   label="Height(inches)" type="number" value={height} onchange={handleHeightChange}></lightning-input>
+                        <lightning-input  type="email" label="Email " value={email} onchange={handleEmailChange}></lightning-input>
+                        <lightning-input  type="tel" label="Phone" value={phone} onchange={handlePhoneChange}></lightning-input>
+                        <lightning-input  type="date" label="DateOfBirth" value={dob} onchange={handleDobChange}></lightning-input>
+                        
+                      </span>
+                    </div>
+                    <div class="slds-col">
+                      <span>
+                        <lightning-input  type="text" label="Diagnosed In" value={diagnosed} onchange={handleDiagnosedChange}></lightning-input> 
+                        <lightning-input  type="number" label="Age(years)" value={age} onchange={handleAgeChange}></lightning-input>
+                        <lightning-combobox label="Gender" type="string" 
+                        value={sex} options={options} onchange={handleSexChange}></lightning-combobox>
+                        <lightning-input  type="text" label="Insurance_Information" value={insurance} onchange={handleInsuranceChange}></lightning-input><br><br>
+                    
+                        <lightning-textarea label="Medical History" value={medicalhis} onchange={handleMedHisChange}></lightning-textarea>
+                   
+                      </span>
+                      
+                    </div>
+                   
+                  </div> 
+                  <lightning-textarea label="Address" value={address} onchange={handleAddressChange}></lightning-textarea><br><br><br> 
+                    <div class="slds-align_absolute-center">
+                   <lightning-button label="Cancel" variant="neutral" onclick={handlebackToCreatePatient}></lightning-button>&nbsp;&nbsp;&nbsp;&nbsp;
+              
+                    <lightning-button label="Save" variant="neutral" onclick={createPatient} onsubmit={handlebackToCreatePatient}></lightning-button>
+                </div>
+            </div>
+        </slot>
+    </div>
+    </div>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open"></div>
+        </template>
+    </lightning-card>
+    
+</template>

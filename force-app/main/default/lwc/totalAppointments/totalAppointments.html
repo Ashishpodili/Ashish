@@ -1,0 +1,58 @@
+<template>
+
+
+
+    <lightning-card
+    title=" Total Appointments"
+    icon-name="custom:custom62"
+
+>
+
+
+   
+
+<!--Total Cards-->
+<div class="style"> 
+            
+    <div class=" slds-m-top_large slds-p-left_small slds-p-right_small slds-grid slds-gutters slds-wrap space"><br>
+       
+        <div class=" box-container slds-col bg-primary slds-p-around_small slds-m-around_small" onclick={handleStatusConfirmed}>
+            <div class="slds-text-align_center slds-text-heading_medium white-color">Confirmed Appointments</div>
+            <div class="slds-text-align_center slds-text-heading_large white-color">{confirmedcount}</div>
+        </div>
+        <div class=" box-container1 slds-col bg-warning slds-p-around_small slds-m-around_small" onclick={handleStatusActive}>
+             <div class="slds-text-align_center slds-text-heading_medium white-color">Active Appointments</div>
+             <div class="slds-text-align_center slds-text-heading_large white-color">{ActiveCount}</div>
+        </div>
+        <div class=" box-container2 slds-col bg-success slds-p-around_small slds-m-around_small" onclick={handleStatusCompleted}>
+            <div class="slds-text-align_center slds-text-heading_medium white-color">Completed Appointments</div>
+            <div class="slds-text-align_center slds-text-heading_large white-color">{completedCount}</div>
+        </div>
+       
+    </div>
+</div><br><br>
+<div class="slds-text-heading_large slds-text-align_center">
+    <h1>Your Appointments are : </h1>
+</div>
+
+
+    <div class="slds-var-m-around_medium">
+      
+            <lightning-datatable
+                key-field="Id"
+                data={recData}
+                columns={columns}
+                onsave={handleSave}
+                draft-values={draftValues}
+                onrowaction={handleRowSelection}
+                hide-checkbox-column="true"
+            >
+        </lightning-datatable>
+      
+       <!-- <template lwc:elseif={recData.error}>
+            <p>>error occurred while loading</p>
+        </template>-->
+    </div>
+   
+</lightning-card>
+</template>

@@ -1,0 +1,49 @@
+<template>
+   
+    <template if:true={isloginpage}>
+        <lightning-card>
+    <div class="login-container">
+        <input type="text" placeholder="Username" value={username} oninput={handleUsernameChange}></input>
+        <input type="password" placeholder="Password" value={password} oninput={handlePasswordChange}></input>
+        <button onclick={handleLogin}>Login</button>
+        <p if:true={error} class="error">{error}</p>
+    </div>
+</lightning-card>
+</template>
+ <template if:false={isloginpage}> 
+    <lightning-card>
+   
+       
+        <div class="style">
+
+           
+                 <img  src={loggedDoctor.ProfilePicLink__c}
+
+                    alt="Profile Pic" /><br><br>
+
+          
+
+            <div class="slds-text-heading_large">
+                <h1>{loggedDoctor.Name}</h1>
+            </div><br>
+
+           
+
+ <b>Speciality &nbsp;&nbsp;:</b>&nbsp;&nbsp; {loggedDoctor.Speciality__c}
+
+            
+
+          
+
+        </div><br><br><br>
+     
+       
+   
+    <c-total-appointments doctor-name={doctor}></c-total-appointments><br><br>
+    <div class="slds-align_absolute-center">
+    <lightning-button label="Logout" variant="neutral" onclick={handleLogout}></lightning-button>
+    </div>
+</lightning-card>
+ </template> 
+
+</template>

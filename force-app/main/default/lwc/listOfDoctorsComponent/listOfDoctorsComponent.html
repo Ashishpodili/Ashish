@@ -1,0 +1,39 @@
+<template>
+    
+    <lightning-card
+    title="Find Your Doctor"
+    icon-name="custom:custom63"
+>
+    <div class=" mystyle slds-var-m-around_medium">
+        <lightning-input
+            type="search"
+            onchange={handleKeyChange}
+            class="slds-var-m-bottom_small"
+            label="Search"
+            value={searchKey}
+        ></lightning-input>
+    </div><br><br>
+          <b><u><header class="slds-text-align_center slds-text-heading_large">List Of Doctors</header></u></b><br><br><br>
+        <template lwc:if={doctors.data}>
+            <lightning-layout class="slds-var-m-around_medium slds-align_absolute-center">
+                <lightning-layout-item onclick={sendMessageService}>
+            <template for:each={doctors.data} for:item="doctor">
+               
+                <c-doctorstile-component
+                            class="slds-show slds-is-relative"
+                            key={doctor.Id}
+                            doctor={doctor}
+                            onselect={handleSelect}
+                          
+                        ></c-doctorstile-component>
+                   
+            </template>
+            </lightning-layout-item>
+           </lightning-layout>
+        
+        </template>
+   
+                
+    </lightning-card>
+                   
+</template>

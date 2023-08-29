@@ -1,0 +1,49 @@
+<template>
+                
+    <lightning-tabset variant="scoped">
+                    <lightning-tab label="Details">
+                        
+                        <lightning-card icon-name="standard:apex_plugin">
+                            <template if:true={recordId}>
+                                <div class="slds-m-horizontal_medium">
+                                    <div class="slds-text-heading_large slds-text-align_center">
+                                    <h1>{doctorName}</h1><br>
+                                </div>
+                                    <img src={PictureUrl} alt=" Doctor picture"/><br><br> 
+                                    <Strong>Speciality&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{speciality}</Strong>  
+                                    <lightning-record-view-form onload={handleRecordLoaded} record-id={recordId} object-api-name="Doctor__c" density="compact">
+                            
+                                        
+                                        <lightning-output-field field-name={phone}></lightning-output-field>
+                                        <lightning-output-field field-name={email}></lightning-output-field>
+                                        
+                                        <lightning-output-field field-name={status}></lightning-output-field>
+                                        <section>Availability </section>
+                                        
+                                        <lightning-output-field field-name={Availability}></lightning-output-field>
+                                    
+                                    </lightning-record-view-form><br><br><br>
+                                    <!--<c-book-appointment-with-doctor record-id={recordId}></c-book-appointment-with-doctor>-->
+                                      <c-create-appointment doctor={recordId} doctor-name={doctorName}></c-create-appointment>
+                                </div>
+                            
+                            </template>
+                            <template if:false={recordId}>
+                                <p>Select a Doctor to see details</p>
+                            </template>
+                        </lightning-card>
+                   
+                    </lightning-tab>
+                    <lightning-tab label="Reviews" value='reviews'>
+                        <c-doctor-reviews record-id={recordId}></c-doctor-reviews>
+                    </lightning-tab>
+                    <lightning-tab label="AddReview">
+                       <c-doctor-add-review-form record-id={recordId} oncreatereview={handleReviewCreated}></c-doctor-add-review-form>
+                    </lightning-tab>
+    </lightning-tabset>
+           
+    
+       
+   
+
+</template>

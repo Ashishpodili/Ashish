@@ -1,0 +1,226 @@
+<template>
+  <!--- This is a CaseDetail PAge -->
+     <!--start -->
+    <template  if:true={isCaseDetailPage}>
+        <lightning-card >
+          <!--Back icon for Detail page-->
+          <div class="slds-float_right">
+            <lightning-button-icon
+              class="slds-modal__back"
+              title="back"
+              icon-name="utility:back"
+             
+              onclick={handleBackToMainPage}
+              
+            ></lightning-button-icon>
+        </div><br>
+        <!--Header-->
+            <h1 class="slds-text-heading_large slds-align_absolute-center">
+            Case Detail Page
+            </h1>
+          <br><br>
+          <!--To Display the Data in Detail Page-->
+          <div class="demo-only demo-only--sizing slds-grid slds-wrap">
+            <div class="slds-size_4-of-4">
+            <div class="slds-box slds-box_x-small slds-text-align_center slds-m-around_x-small">
+             <b>CaseId&nbsp;:</b> &nbsp;&nbsp;{rowData.Id}
+            </div>
+            </div>
+            <div class="slds-size_2-of-4">
+            <div class="slds-box slds-box_x-small slds-text-align_center slds-m-around_x-small">
+              <b>CaseNumber&nbsp;:</b>&nbsp;&nbsp;{rowData.CaseNumber}
+            </div>
+            </div>
+            <div class="slds-size_2-of-4">
+            <div class="slds-box slds-box_x-small slds-text-align_center slds-m-around_x-small">
+              <b>Priority&nbsp;:</b>&nbsp;&nbsp;{rowData.Priority}
+            </div>
+            </div>
+            <div class="slds-size_2-of-4">
+            <div class="slds-box slds-box_x-small slds-text-align_center slds-m-around_x-small">
+              <b>Status&nbsp;:</b>&nbsp;&nbsp;{rowData.Status}
+            </div>
+            </div>
+            <div class="slds-size_2-of-4">
+            <div class="slds-box slds-box_x-small slds-text-align_center slds-m-around_x-small">
+              <b>Type&nbsp;:</b>&nbsp;&nbsp;{rowData.Type}
+            </div>
+            </div>
+            <div class="slds-size_2-of-4">
+            <div class="slds-box slds-box_x-small slds-text-align_center slds-m-around_x-small">
+              <b>Origin&nbsp;:</b>&nbsp;&nbsp;{rowData.Origin}
+            </div>
+            </div>
+            <div class="slds-size_2-of-4">
+            <div class="slds-box slds-box_x-small slds-text-align_center slds-m-around_x-small">
+              <b>Subject&nbsp;:</b>&nbsp;&nbsp;{rowData.Subject}
+            </div>
+            </div>
+           
+            </div><br><br><br>
+             <!--buttons in Detail Page-->
+                 <div class="slds-align_absolute-center">
+                 <lightning-button label="Back" variant="neutral" onclick={handleBackToMainPage}></lightning-button>&nbsp;&nbsp;
+                 <lightning-button label="Edit" variant="neutral" onclick={handleEditCaseRecord}></lightning-button>&nbsp;&nbsp;
+                 <lightning-button label="Delete" variant="neutral" onclick={handleDeleteCaseRecord}
+                 ></lightning-button>
+                </div>
+        </lightning-card>
+                </template>
+ <!--End of the CaseDetailPage -->
+
+ <!--Create Case Record Start-->
+                <template if:true={isCaseCreate}>
+                  <section
+                  role="dialog"
+                  tabindex="-1"
+                  aria-labelledby="modal-heading-01"
+                  aria-modal="true"
+                  aria-describedby="modal-content-id-1"
+                  class="slds-modal slds-fade-in-open"
+                >
+                  <div class="slds-modal__container">
+                    <!-- Header Start -->
+                    <header class="slds-modal__header">
+                      <!--close icon for create case-->
+                      <lightning-button-icon
+                        class="slds-modal__close"
+                        title="Close"
+                        icon-name="utility:close"
+                        icon-class="slds-button_icon-inverse"
+                        onclick={handleDialogClose}
+                      ></lightning-button-icon>
+            
+                      <h1 class="slds-text-heading_large slds-hyphenate header-string">
+                        Create Case
+                      </h1>
+                    </header>
+                    <!-- Header End -->
+                    <div
+                      class="slds-modal__content slds-p-around_medium"
+                      id="modal-content-id-1"
+                    >
+                        <slot>
+                          
+                          <lightning-card>
+                            
+                            <!--Create Case record using lightning record form-->
+                              <lightning-record-form object-api-name="Case"
+                               fields={fields} 
+                               onsuccess={handleSuccess}
+                               oncancel={hanleCaseCancel} 
+                               columns="2">
+                              </lightning-record-form>
+                          </lightning-card>
+                        </slot>
+                      </div>
+                    </div>
+                  </section>
+                  <div class="slds-backdrop slds-backdrop_open"></div>
+                      
+                </template>
+     <!--Create Case Record End-->
+
+     <!--Upating Case Record Start-->
+    <template if:true={isCaseEdit}>
+      <div class="slds-float_right">
+        <!--Close icon for edit page-->
+        <lightning-button-icon
+          class="slds-modal__close"
+          title="Close"
+          icon-name="utility:close"
+          icon-class="slds-icon slds-icon-text-inverse"
+          onclick={hanleCancel}
+        ></lightning-button-icon>
+      </div><br>
+   
+             <lightning-card>
+             <!--Header-->
+                <h1 class="slds-text-heading_large slds-align_absolute-center">
+                Edit Case Page
+                </h1>
+              
+              <div class="slds-p-around_large">
+                <!--Edit Case using  lightning record form-->
+                <lightning-record-form object-api-name="Case"
+                layout-type="Full"
+                 record-id={rowData.Id}
+                 columns="4"
+                 mode="edit"
+                 oncancel={hanleCancel}
+                 onsuccess={handleEditSuccess}
+                 onsubmit={hanleSubmit}>
+                </lightning-record-form>
+              </div>
+               
+            </lightning-card>
+          <!--Upating Case Record End-->
+         
+ <!--Case LandiPage Start-->
+    </template>
+    <template if:true={isLandingPage}>
+       
+        <lightning-card>
+          <div class=" slds-text-heading_large slds-align_absolute-center">
+            <h1> Landing Page</h1>
+          </div><br><br>
+              <div class="slds-float_right slds-p-right_medium">
+            <lightning-button label="Create Case" variant="neutral" onclick={handleCaseCreation}></lightning-button>
+        </div><br><br>
+       
+   
+        <!--LIGHTNING DATATABLE-->
+       
+
+       
+        <div>
+          <lightning-datatable
+            key-field="Id"
+            data={recordsToDisplay}
+             hide-checkbox-column="true"
+             onrowaction={handleRowSelection}           
+              columns={columns}>
+         
+         </lightning-datatable>
+        </div>
+           
+       
+        <div class="slds-grid slds-grid_vertical-align-center slds-grid_align-spread slds-p-left_medium" style="padding-top: 0.5em;" >
+            <!--RECORDS PER PAGE-->
+            <div class="slds-col">
+                <div class="slds-list_inline slds-p-bottom_xx-small">
+                    <label class="slds-text-color_weak slds-p-horizontal_x-small" for="recordsPerPage">Page Size:</label>
+                    <div class="slds-select_container">
+                        <select class="slds-select" id="recordsPerPage" onchange={handleRecordsPerPage}>
+                            <template for:each={pageSizeOptions} for:item="option">
+                                <option key={option} value={option}>{option}</option>
+                            </template>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!--Pagination-->
+            <div class="slds-align_absolute-center" style="height:5rem">
+                <lightning-button disabled={DisableFirst} icon-name="utility:jump_to_left" label="First" class="slds-p-horizontal_x-small" alternative-text="first page" onclick={firstPage}></lightning-button>
+
+                <lightning-button disabled={DisableFirst} icon-name="utility:chevronleft" label="Previous" alternative-text="Previous" onclick={previousPage}></lightning-button>
+                &nbsp;
+                <span class="slds-badge">Showing {pageNumber} &nbsp;of&nbsp; {totalPages} &nbsp;&nbsp;Page(s)</span>
+                &nbsp;
+                <lightning-button disabled={DisableLast} icon-name="utility:chevronright" label="Next" alternative-text="Next" onclick={nextPage} class="slds-p-horizontal_x-small" icon-position="right"></lightning-button>
+
+                <lightning-button disabled={DisableLast} icon-name="utility:jump_to_right" label="Last" alternative-text="last page" onclick={lastPage} icon-position="right"></lightning-button>
+            </div>
+
+            <!--Total Records-->
+            <div class="slds-clearfix">
+                <div class="slds-float_right slds-p-right_medium">
+                    <span class="slds-badge"> Total Records: {totalRecords}</span>
+                </div>
+            </div>
+        </div>
+      </lightning-card>
+    </template>
+    <!--Case LandiPage End-->
+</template>

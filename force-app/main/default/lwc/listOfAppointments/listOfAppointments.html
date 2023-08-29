@@ -1,0 +1,25 @@
+<template>
+    <lightning-card
+        title=" list Of Appointments"
+        icon-name="custom:custom62"
+    >
+        <div class="slds-var-m-around_medium">
+          
+                <lightning-datatable
+                    key-field="Id"
+                    data={recData}
+                    columns={columns}
+                    onsave={handleSave}
+                    draft-values={draftValues}
+                    onrowaction={handleRowSelection}
+                    hide-checkbox-column="true"
+                >
+            </lightning-datatable>
+          
+           <!-- <template lwc:elseif={recData.error}>
+                <p>>error occurred while loading</p>
+            </template>-->
+        </div>
+       
+    </lightning-card>
+</template>

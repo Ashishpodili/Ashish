@@ -1,0 +1,59 @@
+<template>
+    <lightning-card>
+    <div class="app-container">
+      <!--Header-->
+        <header>Agent Main Page</header>
+
+        <!--Total Cards-->
+        <!-- <div class="style"> 
+            
+        <div class=" slds-m-top_large slds-p-left_small slds-p-right_small slds-grid slds-gutters slds-wrap space"><br>
+           
+            <div class=" box-container slds-col bg-primary slds-p-around_small slds-m-around_small">
+                <div class="slds-text-align_center slds-text-heading_medium white-color">Total Confirmed Appointments</div>
+                <div class="slds-text-align_center slds-text-heading_large white-color">0</div>
+            </div>
+            <div class=" box-container1 slds-col bg-warning slds-p-around_small slds-m-around_small">
+                 <div class="slds-text-align_center slds-text-heading_medium white-color">Total Active Appointments</div>
+                 <div class="slds-text-align_center slds-text-heading_large white-color">0</div>
+            </div>
+            <div class=" box-container2 slds-col bg-success slds-p-around_small slds-m-around_small">
+                <div class="slds-text-align_center slds-text-heading_medium white-color">Total Completed Appointments</div>
+                <div class="slds-text-align_center slds-text-heading_large white-color">0</div>
+            </div>
+           
+        </div>
+    </div>
+        -->
+    
+   
+
+    <div class=" slds-m-top_large slds-p-left_small slds-p-right_small slds-grid slds-gutters slds-wrap space"><br>
+        <div class=" box-container1 slds-col bg-info slds-p-around_small slds-m-around_small" onclick={navigateToHome}>
+            <div class="slds-text-align_center slds-text-heading_medium white-color">Book An Appointment</div>
+            <div class="slds-text-align_center slds-text-heading_large white-color">
+                <img src="https://tse1.mm.bing.net/th/id/OIP.kg5IJJGlgI54zbY-kMwbRwHaDM?pid=ImgDet&rs=1" alt="appointmentImage"/>
+            </div>
+        </div>
+     <div class="box-container3 slds-col bg-danger slds-p-around_small slds-m-around_small" onclick={navigateListOfAppointmentsTab}>
+                <div class="slds-text-align_center slds-text-heading_medium white-color"> Appointments</div>
+                <div class="slds-text-align_center slds-text-heading_large white-color">
+                    <img src="https://tse2.mm.bing.net/th/id/OIP.410jRbd1T09HPvY-9qKu1wHaDt?pid=ImgDet&rs=1" alt="appImage"/>
+                </div>
+            </div>
+            <div class=" box-container4 slds-col bg-info slds-p-around_small slds-m-around_small" onclick={navigateListOfPatientsTab}>
+                <div class="slds-text-align_center slds-text-heading_medium white-color">Patients</div>
+                <div class="slds-text-align_center slds-text-heading_large white-color">
+                    <img src="https://www.sleepdentistrymelbourne.com.au/assets/images/_x1920x1080/happy_patient.jpg" alt="patientImage"/>
+                </div>
+            </div>
+            <div class=" box-container5 slds-col bg-secondary slds-p-around_small slds-m-around_small" onclick={navigateListOfDoctorsTab}>
+                <div class="slds-text-align_center slds-text-heading_medium white-color">Doctors</div>
+                <div class="slds-text-align_center slds-text-heading_large white-color">
+                    <img src="https://webstockreview.net/images/patient-clipart-dr-patient.jpg" alt="Image"/>
+                </div>
+            </div>
+    </div>
+</div>
+</lightning-card>
+</template>
