@@ -1,3 +1,5 @@
 import { LightningElement } from 'lwc';
 
-export default class Demo extends LightningElement {}
+export default class Demo extends LightningElement {
+    addEventListenermul
+}
