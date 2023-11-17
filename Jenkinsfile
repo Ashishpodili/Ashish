@@ -31,7 +31,7 @@ node {
 		    //bat "${toolbelt} plugins:install salesforcedx@49.5.0"
 		    bat "${toolbelt} sfdx update"
 		    //bat "${toolbelt} sfdx:auth:logout -u ${HUB_ORG} -p" 
-                 rc = bat returnStatus: true, script: "${toolbelt} auth:jwt:grant --clientid ${CONNECTED_APP_CONSUMER_KEY} --username ${HUB_ORG} --jwtkeyfile ${jwt_key_file} --loglevel DEBUG --setdefaultdevhubusername --instanceurl ${SFDC_HOST}"
+                 rc = bat returnStatus: true, script: "${toolbelt} auth:jwt:grant --clientid ${CONNECTED_APP_CONSUMER_KEY} --username ${HUB_ORG} --jwtkeyfile ${JWT_KEY_CRED_ID} --loglevel DEBUG --setdefaultdevhubusername --instanceurl ${SFDC_HOST}"
             }
 		
             if (rc != 0) { 
